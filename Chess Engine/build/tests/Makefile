@@ -185,6 +185,54 @@ Tests/fast:
 	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/build
 .PHONY : Tests/fast
 
+__/engine/board.o: __/engine/board.cpp.o
+.PHONY : __/engine/board.o
+
+# target to build an object file
+__/engine/board.cpp.o:
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o
+.PHONY : __/engine/board.cpp.o
+
+__/engine/board.i: __/engine/board.cpp.i
+.PHONY : __/engine/board.i
+
+# target to preprocess a source file
+__/engine/board.cpp.i:
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/__/engine/board.cpp.i
+.PHONY : __/engine/board.cpp.i
+
+__/engine/board.s: __/engine/board.cpp.s
+.PHONY : __/engine/board.s
+
+# target to generate assembly for a file
+__/engine/board.cpp.s:
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/__/engine/board.cpp.s
+.PHONY : __/engine/board.cpp.s
+
+__/engine/utils.o: __/engine/utils.cpp.o
+.PHONY : __/engine/utils.o
+
+# target to build an object file
+__/engine/utils.cpp.o:
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o
+.PHONY : __/engine/utils.cpp.o
+
+__/engine/utils.i: __/engine/utils.cpp.i
+.PHONY : __/engine/utils.i
+
+# target to preprocess a source file
+__/engine/utils.cpp.i:
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.i
+.PHONY : __/engine/utils.cpp.i
+
+__/engine/utils.s: __/engine/utils.cpp.s
+.PHONY : __/engine/utils.s
+
+# target to generate assembly for a file
+__/engine/utils.cpp.s:
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/Tests.dir/build.make tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.s
+.PHONY : __/engine/utils.cpp.s
+
 tests.o: tests.cpp.o
 .PHONY : tests.o
 
@@ -223,6 +271,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... Tests"
+	@echo "... __/engine/board.o"
+	@echo "... __/engine/board.i"
+	@echo "... __/engine/board.s"
+	@echo "... __/engine/utils.o"
+	@echo "... __/engine/utils.i"
+	@echo "... __/engine/utils.s"
 	@echo "... tests.o"
 	@echo "... tests.i"
 	@echo "... tests.s"

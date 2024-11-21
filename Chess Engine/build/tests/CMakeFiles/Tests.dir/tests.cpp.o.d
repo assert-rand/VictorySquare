@@ -265,4 +265,86 @@ tests/CMakeFiles/Tests.dir/tests.cpp.o: \
  /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/googletest/googletest/include/gtest/gtest-test-part.h \
  /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/googletest/googletest/include/gtest/gtest-typed-test.h \
  /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/googletest/googletest/include/gtest/gtest_pred_impl.h \
- /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/googletest/googletest/include/gtest/gtest_prod.h
+ /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/googletest/googletest/include/gtest/gtest_prod.h \
+ /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/tests/../engine/board.hpp \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
+ /usr/include/c++/13/cfloat /usr/include/c++/13/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/13/csetjmp \
+ /usr/include/setjmp.h /usr/include/c++/13/cstdarg \
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h /usr/include/c++/13/bitset \
+ /usr/include/c++/13/numeric /usr/include/c++/13/bits/stl_numeric.h \
+ /usr/include/c++/13/array /usr/include/c++/13/compare \
+ /usr/include/c++/13/scoped_allocator /usr/include/c++/13/typeindex \
+ /usr/include/c++/13/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/13/csignal /usr/include/c++/13/cstring \
+ /usr/include/c++/13/ccomplex /usr/include/c++/13/complex \
+ /usr/include/c++/13/cfenv /usr/include/c++/13/fenv.h /usr/include/fenv.h \
+ /usr/include/x86_64-linux-gnu/bits/fenv.h /usr/include/c++/13/cinttypes \
+ /usr/include/inttypes.h /usr/include/c++/13/cstdalign \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdalign.h \
+ /usr/include/c++/13/cstdbool \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
+ /usr/include/c++/13/ctgmath /usr/include/c++/13/cuchar \
+ /usr/include/uchar.h /usr/include/c++/13/deque \
+ /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
+ /usr/include/c++/13/fstream \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/iomanip \
+ /usr/include/c++/13/bits/quoted_string.h /usr/include/c++/13/list \
+ /usr/include/c++/13/bits/stl_list.h /usr/include/c++/13/bits/list.tcc \
+ /usr/include/c++/13/queue /usr/include/c++/13/bits/stl_queue.h \
+ /usr/include/c++/13/stack /usr/include/c++/13/bits/stl_stack.h \
+ /usr/include/c++/13/valarray /usr/include/c++/13/bits/valarray_array.h \
+ /usr/include/c++/13/bits/valarray_array.tcc \
+ /usr/include/c++/13/bits/valarray_before.h \
+ /usr/include/c++/13/bits/slice_array.h \
+ /usr/include/c++/13/bits/valarray_after.h \
+ /usr/include/c++/13/bits/gslice.h \
+ /usr/include/c++/13/bits/gslice_array.h \
+ /usr/include/c++/13/bits/mask_array.h \
+ /usr/include/c++/13/bits/indirect_array.h /usr/include/c++/13/chrono \
+ /usr/include/c++/13/codecvt /usr/include/c++/13/forward_list \
+ /usr/include/c++/13/bits/forward_list.h \
+ /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/future \
+ /usr/include/c++/13/bits/atomic_futex.h \
+ /usr/include/c++/13/bits/std_thread.h /usr/include/c++/13/random \
+ /usr/include/c++/13/bits/random.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
+ /usr/include/c++/13/bits/random.tcc /usr/include/c++/13/regex \
+ /usr/include/c++/13/bits/regex_constants.h \
+ /usr/include/c++/13/bits/regex_error.h \
+ /usr/include/c++/13/bits/regex_automaton.h \
+ /usr/include/c++/13/bits/regex_automaton.tcc \
+ /usr/include/c++/13/bits/regex_scanner.h \
+ /usr/include/c++/13/bits/regex_scanner.tcc \
+ /usr/include/c++/13/bits/regex_compiler.h \
+ /usr/include/c++/13/bits/regex_compiler.tcc \
+ /usr/include/c++/13/bits/regex.h /usr/include/c++/13/bits/regex.tcc \
+ /usr/include/c++/13/bits/regex_executor.h \
+ /usr/include/c++/13/bits/regex_executor.tcc /usr/include/c++/13/thread \
+ /usr/include/c++/13/bits/this_thread_sleep.h \
+ /usr/include/c++/13/unordered_set \
+ /usr/include/c++/13/bits/unordered_set.h \
+ /usr/include/c++/13/shared_mutex \
+ /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/tests/../engine/utils.hpp \
+ /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/tests/../engine/board.hpp

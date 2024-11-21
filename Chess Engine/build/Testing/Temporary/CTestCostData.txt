@@ -1,4 +1,4 @@
-test1.test 1 0.00462655
-test2.test 0 0
+ValidMovesTest.rook_test 1 0.00435697
+ValidMovesTest.bishop_test 1 0.00345611
+ValidMovesTest.pawn_test 1 0.00278604
 ---
-test2.test

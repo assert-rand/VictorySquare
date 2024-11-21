@@ -1,20 +1,20 @@
-Start testing: Nov 21 15:03 IST
+Start testing: Nov 21 16:12 IST
 ----------------------------------------------------------
-1/2 Testing: test1.test
-1/2 Test: test1.test
-Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=test1.test" "--gtest_also_run_disabled_tests"
+1/3 Testing: ValidMovesTest.rook_test
+1/3 Test: ValidMovesTest.rook_test
+Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=ValidMovesTest.rook_test" "--gtest_also_run_disabled_tests"
 Directory: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests
-"test1.test" start time: Nov 21 15:03 IST
+"ValidMovesTest.rook_test" start time: Nov 21 16:12 IST
 Output:
 ----------------------------------------------------------
 Running main() from /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/googletest/googletest/src/gtest_main.cc
-Note: Google Test filter = test1.test
+Note: Google Test filter = ValidMovesTest.rook_test
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from test1
-[ RUN      ] test1.test
-[       OK ] test1.test (0 ms)
-[----------] 1 test from test1 (0 ms total)
+[----------] 1 test from ValidMovesTest
+[ RUN      ] ValidMovesTest.rook_test
+[       OK ] ValidMovesTest.rook_test (0 ms)
+[----------] 1 test from ValidMovesTest (0 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (0 ms total)
@@ -23,44 +23,62 @@ Note: Google Test filter = test1.test
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"test1.test" end time: Nov 21 15:03 IST
-"test1.test" time elapsed: 00:00:00
+"ValidMovesTest.rook_test" end time: Nov 21 16:12 IST
+"ValidMovesTest.rook_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/2 Testing: test2.test
-2/2 Test: test2.test
-Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=test2.test" "--gtest_also_run_disabled_tests"
+2/3 Testing: ValidMovesTest.bishop_test
+2/3 Test: ValidMovesTest.bishop_test
+Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=ValidMovesTest.bishop_test" "--gtest_also_run_disabled_tests"
 Directory: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests
-"test2.test" start time: Nov 21 15:03 IST
+"ValidMovesTest.bishop_test" start time: Nov 21 16:12 IST
 Output:
 ----------------------------------------------------------
 Running main() from /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/googletest/googletest/src/gtest_main.cc
-Note: Google Test filter = test2.test
+Note: Google Test filter = ValidMovesTest.bishop_test
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from test2
-[ RUN      ] test2.test
-/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/tests/tests.cpp:8: Failure
-Value of: false
-  Actual: false
-Expected: true
-
-[  FAILED  ] test2.test (0 ms)
-[----------] 1 test from test2 (0 ms total)
+[----------] 1 test from ValidMovesTest
+[ RUN      ] ValidMovesTest.bishop_test
+[       OK ] ValidMovesTest.bishop_test (0 ms)
+[----------] 1 test from ValidMovesTest (0 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (0 ms total)
-[  PASSED  ] 0 tests.
-[  FAILED  ] 1 test, listed below:
-[  FAILED  ] test2.test
-
- 1 FAILED TEST
+[  PASSED  ] 1 test.
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
-Test Failed.
-"test2.test" end time: Nov 21 15:03 IST
-"test2.test" time elapsed: 00:00:00
+Test Passed.
+"ValidMovesTest.bishop_test" end time: Nov 21 16:12 IST
+"ValidMovesTest.bishop_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 21 15:03 IST
+3/3 Testing: ValidMovesTest.pawn_test
+3/3 Test: ValidMovesTest.pawn_test
+Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=ValidMovesTest.pawn_test" "--gtest_also_run_disabled_tests"
+Directory: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests
+"ValidMovesTest.pawn_test" start time: Nov 21 16:12 IST
+Output:
+----------------------------------------------------------
+Running main() from /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ValidMovesTest.pawn_test
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ValidMovesTest
+[ RUN      ] ValidMovesTest.pawn_test
+[       OK ] ValidMovesTest.pawn_test (0 ms)
+[----------] 1 test from ValidMovesTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ValidMovesTest.pawn_test" end time: Nov 21 16:12 IST
+"ValidMovesTest.pawn_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 21 16:12 IST

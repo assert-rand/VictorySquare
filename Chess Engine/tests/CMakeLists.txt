@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.14)
 
+set(Headers
+    ../engine/board.hpp
+    ../engine/utils.hpp
+)
+
 set(Sources
+    ../engine/board.cpp
+    ../engine/utils.cpp
     tests.cpp
 )
 

@@ -69,10 +69,38 @@ include tests/CMakeFiles/Tests.dir/progress.make
 # Include the compile flags for this target's objects.
 include tests/CMakeFiles/Tests.dir/flags.make
 
+tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o: tests/CMakeFiles/Tests.dir/flags.make
+tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/engine/board.cpp
+tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o: tests/CMakeFiles/Tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o"
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o -MF CMakeFiles/Tests.dir/__/engine/board.cpp.o.d -o CMakeFiles/Tests.dir/__/engine/board.cpp.o -c "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/engine/board.cpp"
+
+tests/CMakeFiles/Tests.dir/__/engine/board.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Tests.dir/__/engine/board.cpp.i"
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/engine/board.cpp" > CMakeFiles/Tests.dir/__/engine/board.cpp.i
+
+tests/CMakeFiles/Tests.dir/__/engine/board.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Tests.dir/__/engine/board.cpp.s"
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/engine/board.cpp" -o CMakeFiles/Tests.dir/__/engine/board.cpp.s
+
+tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o: tests/CMakeFiles/Tests.dir/flags.make
+tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/engine/utils.cpp
+tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o: tests/CMakeFiles/Tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o"
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o -MF CMakeFiles/Tests.dir/__/engine/utils.cpp.o.d -o CMakeFiles/Tests.dir/__/engine/utils.cpp.o -c "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/engine/utils.cpp"
+
+tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Tests.dir/__/engine/utils.cpp.i"
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/engine/utils.cpp" > CMakeFiles/Tests.dir/__/engine/utils.cpp.i
+
+tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Tests.dir/__/engine/utils.cpp.s"
+	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/engine/utils.cpp" -o CMakeFiles/Tests.dir/__/engine/utils.cpp.s
+
 tests/CMakeFiles/Tests.dir/tests.cpp.o: tests/CMakeFiles/Tests.dir/flags.make
 tests/CMakeFiles/Tests.dir/tests.cpp.o: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess\ Engine/tests/tests.cpp
 tests/CMakeFiles/Tests.dir/tests.cpp.o: tests/CMakeFiles/Tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/Tests.dir/tests.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/Tests.dir/tests.cpp.o"
 	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/Tests.dir/tests.cpp.o -MF CMakeFiles/Tests.dir/tests.cpp.o.d -o CMakeFiles/Tests.dir/tests.cpp.o -c "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/tests/tests.cpp"
 
 tests/CMakeFiles/Tests.dir/tests.cpp.i: cmake_force
@@ -85,17 +113,21 @@ tests/CMakeFiles/Tests.dir/tests.cpp.s: cmake_force
 
 # Object files for target Tests
 Tests_OBJECTS = \
+"CMakeFiles/Tests.dir/__/engine/board.cpp.o" \
+"CMakeFiles/Tests.dir/__/engine/utils.cpp.o" \
 "CMakeFiles/Tests.dir/tests.cpp.o"
 
 # External object files for target Tests
 Tests_EXTERNAL_OBJECTS =
 
+tests/Tests: tests/CMakeFiles/Tests.dir/__/engine/board.cpp.o
+tests/Tests: tests/CMakeFiles/Tests.dir/__/engine/utils.cpp.o
 tests/Tests: tests/CMakeFiles/Tests.dir/tests.cpp.o
 tests/Tests: tests/CMakeFiles/Tests.dir/build.make
 tests/Tests: lib/libgtest_main.a
 tests/Tests: lib/libgtest.a
 tests/Tests: tests/CMakeFiles/Tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Tests"
 	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Tests.dir/link.txt --verbose=$(VERBOSE)
 	cd "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" && /usr/bin/cmake -D TEST_TARGET=Tests -D "TEST_EXECUTABLE=/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests" -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=Tests_TESTS -D "CTEST_FILE=/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests[1]_tests.cmake" -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.28/Modules/GoogleTestAddTests.cmake
 

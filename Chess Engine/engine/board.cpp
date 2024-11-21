@@ -29,3 +29,16 @@ bool Board::white_piece(pieces target)
     }
     return false;
 }
+
+void Board::set_board(vector<pieces> newboard)
+{
+    board = newboard;
+}
+
+void Board::print_board()
+{
+    for (int i = 0; i < 64; i++) {
+        cout << mp[board[i]] << ((i+1)%8 == 0 && i != 0 ? "\n" : "\t");
+    }
+    cout << "\n";
+}

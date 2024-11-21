@@ -6,5 +6,6 @@ using namespace std;
 
 int main()
 {
-    cout << "Compiled!\n";
+    Board board;
+    board.print_board();
 }
