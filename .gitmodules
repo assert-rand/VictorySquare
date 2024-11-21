@@ -1,0 +1,3 @@
+[submodule "Chess Engine/Chess Engine/googletest"]
+	path = Chess Engine/Chess Engine/googletest
+	url = https://github.com/google/googletest.git

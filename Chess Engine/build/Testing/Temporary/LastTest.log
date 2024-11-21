@@ -1,0 +1,66 @@
+Start testing: Nov 21 15:03 IST
+----------------------------------------------------------
+1/2 Testing: test1.test
+1/2 Test: test1.test
+Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=test1.test" "--gtest_also_run_disabled_tests"
+Directory: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests
+"test1.test" start time: Nov 21 15:03 IST
+Output:
+----------------------------------------------------------
+Running main() from /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = test1.test
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from test1
+[ RUN      ] test1.test
+[       OK ] test1.test (0 ms)
+[----------] 1 test from test1 (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"test1.test" end time: Nov 21 15:03 IST
+"test1.test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: test2.test
+2/2 Test: test2.test
+Command: "/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests" "--gtest_filter=test2.test" "--gtest_also_run_disabled_tests"
+Directory: /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests
+"test2.test" start time: Nov 21 15:03 IST
+Output:
+----------------------------------------------------------
+Running main() from /home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = test2.test
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from test2
+[ RUN      ] test2.test
+/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/tests/tests.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] test2.test (0 ms)
+[----------] 1 test from test2 (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] test2.test
+
+ 1 FAILED TEST
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"test2.test" end time: Nov 21 15:03 IST
+"test2.test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 21 15:03 IST

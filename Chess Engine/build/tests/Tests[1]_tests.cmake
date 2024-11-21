@@ -1,0 +1,5 @@
+add_test([=[test1.test]=]  [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests]==] [==[--gtest_filter=test1.test]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[test1.test]=]  PROPERTIES WORKING_DIRECTORY [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[test2.test]=]  [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests]==] [==[--gtest_filter=test2.test]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[test2.test]=]  PROPERTIES WORKING_DIRECTORY [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  Tests_TESTS test1.test test2.test)
