@@ -1,10 +1,12 @@
 import './Game.scss'
 
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {Chess} from "chess.js";
 import { Chessboard } from "react-chessboard";
 
+
 export default function Game() {
+
   const [game, setGame] = useState(new Chess());
 
   function makeAMove(move) {
@@ -22,18 +24,20 @@ export default function Game() {
     makeAMove(possibleMoves[randomIndex]);
   }
 
-    const onDrop = (sourceSquare, targetSquare, piece)=>{
-        const move = makeAMove({
-            from: sourceSquare,
-            to: targetSquare,
-            piece : piece,
-            promotion: "q"
-        });
-        
-        if (move === null) return false;
-        setTimeout(makeRandomMove, 200);
-        return true;
-    }
+  const onDrop = (sourceSquare, targetSquare, piece)=>{
+      const move = makeAMove({
+          from: sourceSquare,
+          to: targetSquare,
+          piece : piece,
+          promotion: "q"
+      });
+      
+      if (move === null) return false;
+      setTimeout(makeRandomMove, 200);
+      return true;
+  }
 
-  return <Chessboard onPieceDrop={onDrop} position={game.fen()} boardWidth={450}/>;
+  return <div className="game d-flex justify-content-center align-items-center">
+    <Chessboard onPieceDrop={onDrop} position={game.fen()} boardWidth={450}/>
+  </div>;
 }

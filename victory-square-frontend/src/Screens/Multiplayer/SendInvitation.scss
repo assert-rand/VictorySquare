@@ -1,0 +1,63 @@
+.send-invitation-container {
+    padding: 2rem 0;
+
+    .search-form {
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+
+            .form-control {
+                border-radius: 20px;
+                padding: 0.75rem 1.25rem;
+                font-size: 1rem;
+                border: 1px solid #ced4da;
+                
+                &:focus {
+                    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                    border-color: #80bdff;
+                }
+            }
+        }
+    }
+
+    .player-card {
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+        }
+
+        .challenge-button {
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+            
+            &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
+    .spinner-border {
+        width: 2rem;
+        height: 2rem;
+    }
+}

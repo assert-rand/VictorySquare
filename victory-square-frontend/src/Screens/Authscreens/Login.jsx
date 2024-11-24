@@ -3,6 +3,55 @@ import "./Authscreens.scss"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Spinner } from "react-bootstrap";
+import validate from "../../validations/authValidation";
+
+import {toast} from 'react-toastify'
+import axios from "axios";
+import { AppContext } from '../../Context/AppContext';
+import { useContext } from 'react';
+import { useNavigate } from "react-router";
+
+const loginRequest = (formData, setToken, setUser, navigate, setWaiting)=>{
+    let data = JSON.stringify(formData);
+    let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://localhost:9003/authentication-service/authenticate',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+    
+    setWaiting(true)
+    axios.request(config)
+    .then((response) => {
+        let token = response.data.token;
+        if(token === null){
+            throw new Error("Incorrect credentials");
+        }
+        let user = response.data.user;
+        console.log(user);
+        
+        setToken(token)
+        setUser(user)
+        navigate("/")
+    })
+    .catch((error) => {
+        toast.error(error.message, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }).finally(()=>{
+        setWaiting(false)
+    });
+}
 
 const Login = ()=>{
     const [formData, setFormData] = useState({
@@ -15,31 +64,25 @@ const Login = ()=>{
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const validate = () => {
-        const newErrors = {};
-        if (!formData.email) {
-            newErrors.email = 'Email is required.';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Email is invalid.';
-        }
-
-        if (!formData.password) {
-            newErrors.password = 'Password is required.';
-        } else if (formData.password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters.';
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
+    const {setToken, setUser} = useContext(AppContext)
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (validate()) {
-            console.log('Form Submitted:', formData);
-            setSubmitted(true);
+        if (validate(formData, setErrors)) {
+            loginRequest(formData, setToken, setUser, navigate, setWaiting)
         } else {
-            setSubmitted(false);
+            toast.error("Validation failed", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     };
 

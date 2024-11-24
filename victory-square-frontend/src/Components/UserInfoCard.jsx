@@ -30,7 +30,7 @@ const UserInfoCard = ({user}) => {
                             >
                                 <b>Against humans</b>
                                 <br/>
-                                {`${user.stats.humanWins} wins / ${user.stats.humanLosses} losses`}
+                                {`${user.humanGamesWon} wins / ${user.humanGamesLost} losses`}
                             </div>
                         </div>
                         <div className="col-6 d-flex justify-content-center">
@@ -45,7 +45,7 @@ const UserInfoCard = ({user}) => {
                             >
                                 <b>Against engine</b>
                                 <br/>
-                                {`${user.stats.computerWins} wins / ${user.stats.computerLosses} losses`}
+                                {`${user.computerGamesWon} wins / ${user.computerGamesLost} losses`}
                             </div>
                         </div>
                     </div>

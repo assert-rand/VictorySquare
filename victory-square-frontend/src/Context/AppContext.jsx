@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react';
 export const AppContext = createContext();
 
-
 export const ContextProvider = ({ children }) => {
     const [appState, setAppState] = useState({
         // user: {
@@ -13,15 +12,15 @@ export const ContextProvider = ({ children }) => {
         // },
         user : null,
     });
-
     const [notifications, setNotifications] = useState([])
+    const [token, setToken] = useState(null)
 
     const setUser = (user)=>{
         setAppState({...appState, user : user})
     }
 
     return (
-        <AppContext.Provider value={{appState, setUser, notifications, setNotifications}}>
+        <AppContext.Provider value={{appState, setUser, notifications, setNotifications, token, setToken}}>
             {children}
         </AppContext.Provider>
     );

@@ -14,6 +14,8 @@ import Game from './Screens/Game/Game'
 
 import './App.scss'
 
+import { ToastContainer } from 'react-toastify'
+
 function App() {
 
   return (
@@ -27,6 +29,7 @@ function App() {
         <Route path = "/sendinvite" element = {<SendInvitation/>}></Route>
         <Route path = "/game" element = {<Game/>}></Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   )
 }
