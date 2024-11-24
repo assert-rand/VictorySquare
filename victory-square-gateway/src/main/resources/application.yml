@@ -1,0 +1,6 @@
+spring:
+  application:
+    name : victory-square-gateway
+
+server:
+  port: 9003
