@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/invite")
-    public ResponseEntity<SuccessResponse> invite(@RequestParam("email") String email, @RequestBody Invitation invitation){
+    public ResponseEntity<SuccessResponse> invite(@RequestParam String email, @RequestBody Invitation invitation){
         Optional<User> user = userRepository.findById(email);
         if(user.isEmpty()){
             return ResponseEntity.notFound().build();

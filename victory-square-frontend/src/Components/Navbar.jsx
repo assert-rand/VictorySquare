@@ -7,6 +7,7 @@ import './Navbar.scss'
 
 import { AppContext } from '../Context/AppContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 const NavbarV = ()=>{
 
@@ -14,11 +15,14 @@ const NavbarV = ()=>{
     const handleLogout = ()=>{
         setUser(null)
     }
+    const navigate = useNavigate()
 
     return (
     <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
         <Container>
-            <Navbar.Brand href="/">
+            <Navbar.Brand onClick={()=>{
+                navigate("/")
+            }}>
                 <img
                 src="/src/assets/icons/white-bg-chess.png"
                 width="30"
@@ -32,9 +36,17 @@ const NavbarV = ()=>{
                 <Nav className="m-2">
                     {
                         appState.user === null ? 
-                        <Nav.Link href="/signup">Sign Up</Nav.Link> : 
+                        <Nav.Link href="/login">Log In</Nav.Link> : 
                         <Button variant='danger' onClick={handleLogout}>Log out</Button>
                     }
+
+                    {   
+                        appState.user === null ? 
+                        null : 
+                        <Nav.Link onClick={()=>{
+                            navigate("/notifications")
+                        }}>Notifications</Nav.Link>
+                    }   
                 </Nav>
             </Navbar.Collapse>
         </Container>

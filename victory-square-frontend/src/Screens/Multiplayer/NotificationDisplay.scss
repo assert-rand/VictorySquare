@@ -1,0 +1,99 @@
+.notification-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    .notification-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .no-notifications {
+        text-align: center;
+        padding: 40px;
+        color: #b8b8b8;
+        border-radius: 8px;
+    }
+    
+    .notification-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .notification-card {
+        background-color: rgb(28, 29, 32);
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        .notification-content {
+            margin-bottom: 16px;
+        }
+        
+        .notification-sender {
+            margin-bottom: 8px;
+            
+            .sender-name {
+                font-weight: bold;
+                color: #E4A11B;
+            }
+            
+            .sender-email {
+                color: white;
+                margin-left: 8px;
+            }
+        }
+        
+        .notification-message {
+            color: white;
+            margin: 8px 0;
+        }
+        
+        .notification-details {
+            display: flex;
+            gap: 16px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .notification-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            
+            button {
+                padding: 8px 16px;
+                border-radius: 4px;
+                border: none;
+                cursor: pointer;
+                font-weight: 500;
+                transition: transform 0.1s;
+                
+                &:active {
+                    transform: scale(0.98);
+                }
+            }
+            
+            .accept-button {
+                background-color: #4CAF50;
+                color: white;
+                
+                &:hover {
+                    background-color: #45a049;
+                }
+            }
+            
+            .reject-button {
+                background-color: #f44336;
+                color: white;
+                
+                &:hover {
+                    background-color: #da190b;
+                }
+            }
+        }
+    }
+}

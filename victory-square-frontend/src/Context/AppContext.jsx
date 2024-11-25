@@ -12,15 +12,21 @@ export const ContextProvider = ({ children }) => {
         // },
         user : null,
     });
+
     const [notifications, setNotifications] = useState([])
     const [token, setToken] = useState(null)
+
+    const [player, setPlayer] = useState(null)
+    const [oppEmail, setOppEmail] = useState(null)
+    const [gameid, setGameid] = useState(null)
+    const [notifid, setNotifid] = useState(null)
 
     const setUser = (user)=>{
         setAppState({...appState, user : user})
     }
 
     return (
-        <AppContext.Provider value={{appState, setUser, notifications, setNotifications, token, setToken}}>
+        <AppContext.Provider value={{appState, setUser, notifications, setNotifications, token, setToken, player, setPlayer, oppEmail, setOppEmail, gameid, setGameid, notifid, setNotifid}}>
             {children}
         </AppContext.Provider>
     );

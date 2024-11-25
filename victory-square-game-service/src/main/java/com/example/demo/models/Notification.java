@@ -17,7 +17,7 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long gameCode;
+    private String gameCode;
     private String inviterEmail;
     private String inviterName;
     private String message;

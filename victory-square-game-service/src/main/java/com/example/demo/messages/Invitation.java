@@ -13,5 +13,5 @@ public class Invitation {
     private String inviteeEmail;
     private String inviteeName;
     private String message;
-    private long gameCode;
+    private String gameCode;
 }

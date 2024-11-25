@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { AppContext } from '../../Context/AppContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 const handleSearch = (searchterm, setError, setLoading, setPlayerData, token) => {
     setError('');
@@ -32,23 +33,67 @@ const handleSearch = (searchterm, setError, setLoading, setPlayerData, token) =>
     });
 };
 
-const handleChallenge = (email, user, setChallenge) => {
-    setChallenge(2);
-    // try {
-    //     // Replace with your actual invitation endpoint
-    //     await fetch('/api/invitations', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             challengedPlayerId: playerData.id,
-    //         }),
-    //     });
-    //     alert('Challenge sent successfully!');
-    // } catch (err) {
-    //     setError('Failed to send challenge. Please try again.');
-    // }
+const handleChallenge = (
+    token, 
+    email, 
+    user, 
+    setChallenge, 
+    navigate, 
+    setPlayer, setOppEmail, setGameid
+) => {
+    setChallenge(1);
+    let config = {
+        method: 'put',
+        maxBodyLength: Infinity,
+        url: `http://localhost:9003/game-service/game/create?email=${user.email}&otherEmail=${email}`,
+        headers: {
+            'Authorization' : `Bearer ${token}`
+        }
+    };
+
+    axios.request(config)
+    .then((response) => {
+        var gameCode = response.data;
+        console.log(response.data);
+        setChallenge(2);
+        if(!gameCode){
+            throw Error("Couldn't");
+        }
+        let data = JSON.stringify({
+            "inviteeEmail": user.email,
+            "inviteeName": user.name,
+            "message": `Your friend here has invited you to join the game with code ${gameCode}`,
+            "gameCode": gameCode
+        });
+        let anotherConfig = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: `http://localhost:9003/game-service/user/invite?email=${email}`,
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization' : `Bearer ${token}`
+            },
+            data : data
+        };
+
+        axios.request(anotherConfig)
+        .then((response)=>{
+            if(!response.data.success){
+                throw Error("Didn't work out");
+            }
+        })
+        .catch((error)=>{
+            setChallenge(0);
+        }).finally(()=>{
+            setPlayer("white")
+            setOppEmail(email)
+            setGameid(gameCode)
+            navigate("/game")
+        })
+    })
+    .catch((error) => {
+        setChallenge(0);
+    })
 };
 
 const SendInvitation = () => {
@@ -57,8 +102,9 @@ const SendInvitation = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [challenge, setChallenge] = useState(0);
-    const {token, appState} = useContext(AppContext)
-
+    const navigate = useNavigate()
+    
+    const {token, appState, setPlayer, setOppEmail, setGameid} = useContext(AppContext)
 
     return (
         <Container className="send-invitation-container">
@@ -117,7 +163,14 @@ const SendInvitation = () => {
                                     <Button 
                                         variant="success" 
                                         onClick={()=>{
-                                            handleChallenge(playerData.email, appState.user, setChallenge)
+                                            handleChallenge(
+                                                token, 
+                                                playerData.email, 
+                                                appState.user, 
+                                                setChallenge, 
+                                                navigate,
+                                                setPlayer, setOppEmail, setGameid
+                                            )
                                         }}
                                         className="challenge-button"
                                     >
