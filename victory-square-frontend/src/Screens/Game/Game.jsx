@@ -13,37 +13,6 @@ import {toast} from 'react-toastify'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-const checkForUpdates = (token, gameId, setGame, setGameOver, missCount, setMissCount, setCurrentPlayer, setGameStatus, game)=>{
-  console.log("polling")
-  let config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: `http://localhost:9003/game-service/game/state?id=${gameId}`,
-    headers: {
-      'Authorization' : `Bearer ${token}`
-    }
-  };
-  axios.request(config)
-  .then((response) => {
-    if(!response.data){
-      throw Error("null response");
-    }
-    const gameCopy = new Chess(response.data);
-    console.log(gameCopy.moves.length, game.moves.length)
-    if(gameCopy.moves.length > game.moves.length){
-      setGame(gameCopy)
-      var newPlayer = (gameCopy.turn() === 'w' ? 'white' : 'black');
-      setCurrentPlayer(newPlayer);
-    }
-  })
-  .catch((error) => {
-     setMissCount(missCount + 1);
-     if(missCount > 100){
-        setGameStatus("Disconnected by miss count")
-     }
-  });
-}
-
 const withdraw = (email, otherEmail, token, navigate)=>{
   let config = {
     method: 'delete',
@@ -73,73 +42,86 @@ const withdraw = (email, otherEmail, token, navigate)=>{
   });
 }
 
-const makeAMove = (move, game, setGame, currentPlayer, setCurrentPlayer, setGameStatus, setGameOver, token, gameid)=>{
-  const gameCopy = new Chess(game.fen());
-  try {
-    const result = gameCopy.move(move);
-    if (result) {
-      let config = {
-        method: 'patch',
-        maxBodyLength: Infinity,
-        url: `http://localhost:9003/game-service/game/move?id=${gameid}&state=${gameCopy.fen()}`,
-        headers: {
-          'Authorization' : `Bearer ${token}`
-        }
-      };
-      axios.request(config)
-      .then((response) => {
-        if(response.data){
-          setGame(gameCopy);
-          var newPlayer = (gameCopy.turn() === 'w' ? 'white' : 'black');
-          setCurrentPlayer(newPlayer);
-
-          console.log("made a move", gameCopy.moves.length)
-        }
-      })
-      .catch((error) => {
-        console.log(error.message)
-      });
-      // checkGameStatus(gameCopy, setGameStatus)
-      return true;
-    }
-  } catch (error) {
-    return true;
-  }
-  return false;
-}
-
 export default function Game() {
   const [game, setGame] = useState(new Chess());
-  const [currentPlayer, setCurrentPlayer] = useState(game.turn() === 'w' ? 'white' : 'black')
   const [gameStatus, setGameStatus] = useState(null)
-  const [gameOver, setGameOver] = useState(false)
-  const [missCount, setMissCount] = useState(0)
-  
+  const [moveCt, setMoveCt] = useState(0)
+
   const {appState, player, oppEmail, gameid, notifid, token} = useContext(AppContext);
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const triggerFunction = () => {
-      if (currentPlayer !== player) {
-        checkForUpdates(token, gameid, setGame, setGameOver, missCount, setMissCount, setCurrentPlayer, setGameStatus, game);
+  const doPolling = ()=>{
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `http://localhost:9003/game-service/game/state?id=${gameid}`,
+      headers: {
+        'Authorization' : `Bearer ${token}`
       }
     };
-    const intervalId = setInterval(triggerFunction, 10000);
+    axios.request(config)
+    .then((response) => {
+      if(response.data){
+         var onlineMoveCt = response.data.moveCount;
+         var onlineGame = response.data.gameString;
+         if(onlineMoveCt >= moveCt + 1){
+            setGame(new Chess(onlineGame));
+            setMoveCt(onlineMoveCt);
+            checkGameStatus(new Chess(onlineGame), setGameStatus)
+         }
+      }
+    })
+    .catch((error) => {
+    });
+  }
+
+  const makeMove = (move)=>{
+    try {
+      const gameCopy = new Chess(game.fen());
+      const result = gameCopy.move(move);
+      if (result) {
+        let config = {
+          method: 'patch',
+          maxBodyLength: Infinity,
+          url: `http://localhost:9003/game-service/game/move?id=${gameid}&state=${gameCopy.fen()}&email=${appState.user.email}`,
+          headers: {
+            'Authorization' : `Bearer ${token}`
+          }
+        };
+        axios.request(config)
+        .then((response) => {
+          if(response.data){
+            setGame(gameCopy);
+            setMoveCt(moveCt + 1);
+            checkGameStatus(gameCopy, setGameStatus)
+          }
+        })
+        .catch((error) => {
+        });
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return true;
+    }
+  }
+
+  useEffect(() => {
+    const triggerFunction = () => {
+      doPolling();
+    };
+    const intervalId = setInterval(triggerFunction, 1000);
     return () => clearInterval(intervalId);
   }, []); 
-
-  useEffect(()=>{
-    
-  }, [game])
   
   
   const onDrop = (sourceSquare, targetSquare, piece)=>{
-      const move = makeAMove({
+      const move = makeMove({
         from: sourceSquare,
         to: targetSquare,
         piece : piece,
         promotion: "q"
-    }, game, setGame, currentPlayer, setCurrentPlayer, setGameStatus, setGameOver, token, gameid)
+    })
       if (move === null) return false;
       return true;
   }
@@ -152,10 +134,13 @@ export default function Game() {
           position={game.fen()} 
           onPieceDrop={onDrop}
           boardWidth={400}
-          arePiecesDraggable={currentPlayer === player}
+          arePiecesDraggable={true}
         />
       </div>
       <div className="col-lg-6 col-md-12">
+        <div className="m-2">
+          You are playing on the <b>{player === 'w' ? "WHITE" : "BLACK"}</b> team.
+        </div>
         {gameStatus && (
           <Alert variant='light'>
             <Alert.Heading>Game Status</Alert.Heading>
@@ -166,7 +151,7 @@ export default function Game() {
         {!gameStatus && (
           <Alert variant='light'>
               <Alert.Heading>Current Turn</Alert.Heading>
-              {currentPlayer}
+                {moveCt % 2 == 1 ? "BLACK team's move" : "WHITE team's move"}
           </Alert>
         )}
 
@@ -188,7 +173,12 @@ export default function Game() {
           </Alert>
           {
             gameStatus ? 
-            <>Game over!<Button className='m-2' variant='warning'>Go back to home</Button></> : 
+            <>Game over!<Button className='m-2' variant='warning'
+              onClick={(e)=>{
+                e.preventDefault();
+                navigate("/")
+              }}
+            >Claim victory</Button></> : 
             null
           }
       </div>

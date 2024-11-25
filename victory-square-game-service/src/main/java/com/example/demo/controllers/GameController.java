@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.messages.SuccessResponse;
+import com.example.demo.models.Game;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import org.apache.coyote.Response;
@@ -17,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 @RequestMapping("/game-service/game")
 public class GameController {
-    private final Map<String, String> games = new ConcurrentHashMap<String, String>();
+    private final Map<String, Game> games = new ConcurrentHashMap<String, Game>();
     private final Map<String, String> ongoingGame = new ConcurrentHashMap<String, String>();
 
     @Autowired
@@ -38,7 +39,9 @@ public class GameController {
         ongoingGame.put(email, gameId);
 
         String newFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-        games.put(gameId, newFen);
+        Game game = Game.builder()
+                        .moveCount(0).whiteEmail(email).blackEmail(otherEmail).gameString(newFen).build();
+        games.put(gameId, game);
         return ResponseEntity.ok(gameId);
     }
 
@@ -83,7 +86,7 @@ public class GameController {
 
 
     @GetMapping("/state")
-    public ResponseEntity<String> getGameState(@RequestParam String id) {
+    public ResponseEntity<Game> getGameState(@RequestParam String id) {
         if(!games.containsKey(id)){
             return ResponseEntity.badRequest().build();
         }
@@ -91,12 +94,21 @@ public class GameController {
     }
 
     @PatchMapping("/move")
-    public ResponseEntity<String> move(@RequestParam String id, @RequestParam String state){
+    public ResponseEntity<SuccessResponse> move(@RequestParam String id, @RequestParam String state, @RequestParam String email){
         if(!games.containsKey(id)){
             return ResponseEntity.badRequest().build();
         }
-        games.replace(id, state);
-        return ResponseEntity.ok(games.get(id));
+        Game game = games.get(id);
+        if(game.getMoveCount() % 2 == 0 && !email.equals(game.getWhiteEmail())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(game.getMoveCount() % 2 == 1 && !email.equals(game.getBlackEmail())){
+            return ResponseEntity.badRequest().build();
+        }
+        game.setGameString(state);
+        game.setMoveCount(game.getMoveCount() + 1);
+        games.put(id, game);
+        return ResponseEntity.ok(new SuccessResponse(true));
     }
 
     @DeleteMapping("/withdraw")
@@ -106,7 +118,7 @@ public class GameController {
             String gameId = ongoingGame.get(email);
             ongoingGame.remove(email);
             if(games.containsKey(gameId)){
-                response = games.get(gameId);
+                response = gameId;
                 games.remove(gameId);
             }
         }

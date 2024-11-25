@@ -14,7 +14,7 @@ const UserInfoCard = ({user}) => {
                     {user.name}
                 </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
-                    Rating: {user.rating}
+                    {user.email}
                 </Card.Subtitle>
                 <Card.Text>
                     <div className="row">

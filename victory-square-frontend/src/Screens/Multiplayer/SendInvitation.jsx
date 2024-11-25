@@ -85,7 +85,7 @@ const handleChallenge = (
         .catch((error)=>{
             setChallenge(0);
         }).finally(()=>{
-            setPlayer("white")
+            setPlayer("w")
             setOppEmail(email)
             setGameid(gameCode)
             navigate("/game")

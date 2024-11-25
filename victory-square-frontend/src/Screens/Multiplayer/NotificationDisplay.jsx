@@ -58,7 +58,7 @@ const acceptNotification = (
         if(returnedGame !== gameId){
             throw Error("Something is wrong");
         }
-        setPlayer("black")
+        setPlayer("b")
         setOppEmail(otherEmail)
         setGameid(gameId)
         setNotifid(notifId)
