@@ -1,0 +1,97 @@
+services:
+  postgresdb:
+    image: postgres:15
+    container_name: postgresdb
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - POSTGRES_USER=${POSTGRESDB_USER}
+      - POSTGRES_PASSWORD=${POSTGRESDB_ROOT_PASSWORD}
+      - POSTGRES_DB=${POSTGRESDB_DATABASE}
+    ports:
+      - ${POSTGRESDB_LOCAL_PORT}:${POSTGRESDB_DOCKER_PORT}
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  victory-square-eureka-server:
+    build: ../victory-square-eureka-server
+    container_name: victory-square-eureka
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - ${EUREKA_HOSTPORT}:${EUREKA_CONTAINERPORT}
+
+  victory-square-authentication-service:
+    build: ../victory-square-authentication-service
+    container_name: victory-square-auth
+    restart: on-failure
+    depends_on:
+      - postgresdb
+      - victory-square-eureka-server
+    env_file: ./.env
+    ports:
+      - ${AUTH_HOSTPORT}:${AUTH_CONTAINERPORT}
+    environment:
+      SPRING_APPLICATION_JSON: >
+        { 
+          "server.port": "9001",
+          "spring.datasource.url": "jdbc:postgresql://postgresdb:${POSTGRESDB_DOCKER_PORT}/${POSTGRESDB_DATABASE}",
+          "spring.datasource.username": "${POSTGRESDB_USER}",
+          "spring.datasource.password": "${POSTGRESDB_ROOT_PASSWORD}",
+          "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.PostgreSQLDialect",
+          "spring.jpa.hibernate.ddl-auto": "update",
+          "spring.application.name": "authentication-service",
+          "eureka.client.serviceUrl.defaultZone": "${EUREKA_URL}"
+        }
+
+  victory-square-game-service:
+    build: ../victory-square-game-service
+    container_name: victory-square-game
+    restart: on-failure
+    depends_on:
+      - postgresdb
+      - victory-square-eureka-server
+    env_file: ./.env
+    ports:
+      - ${GAME_HOSTPORT}:${GAME_CONTAINERPORT}
+    environment:
+      SPRING_APPLICATION_JSON: >
+        { 
+          "server.port": "9005",
+          "spring.datasource.url": "jdbc:postgresql://postgresdb:${POSTGRESDB_DOCKER_PORT}/${POSTGRESDB_DATABASE}",
+          "spring.datasource.username": "${POSTGRESDB_USER}",
+          "spring.datasource.password": "${POSTGRESDB_ROOT_PASSWORD}",
+          "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.PostgreSQLDialect",
+          "spring.jpa.hibernate.ddl-auto": "update",
+          "spring.application.name": "authentication-service",
+          "eureka.client.serviceUrl.defaultZone": "${EUREKA_URL}"
+        }
+
+  victory-square-gateway:
+    build: ../victory-square-gateway
+    container_name: victory-square-gateway
+    restart: on-failure
+    depends_on:
+      - victory-square-eureka-server
+      - victory-square-game-service
+      - victory-square-authentication-service
+    env_file: ./.env
+    ports:
+      - ${GATEWAY_HOSTPORT}:${GATEWAY_CONTAINERPORT}
+    environment:
+      SPRING_APPLICATION_JSON: >
+        { 
+          "server.port": "9003",
+          "spring.application.name": "victory-square-gateway",
+          "spring.cloud.gateway.globalcors.corsConfigurations": {
+            "[/**]": {
+              "allowedOrigins": "*",
+              "allowedMethods": "*",
+              "allowedHeaders": "*"
+            }
+          },
+          "eureka.client.serviceUrl.defaultZone": "${EUREKA_URL}"
+        }
+
+volumes:
+  db:

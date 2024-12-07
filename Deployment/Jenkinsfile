@@ -1,0 +1,79 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_CREDENTIALS_ID = 'githubCredsSSH'
+        DOCKERHUB_CREDENTIALS = credentials('dockerHubCreds')
+        DOCKERHUB_REPO_PREFIX = 'subhajeetlahiri'
+    }
+    
+    triggers {
+        githubPush()
+    }
+
+    stages {
+        stage('1. Pull code from Victorysq repo') {
+            steps {
+                script {
+                    checkout([
+                        $class: 'GitSCM', 
+                        branches: [[name: '*/main']], 
+                        userRemoteConfigs: [[
+                            url: 'git@github.com:assert-rand/VictorySquare.git',
+                            credentialsId: env.GIT_CREDENTIALS_ID
+                        ]]
+                    ])
+                }
+            }
+        }
+        
+        stage('2. Build Docker Images') {
+            steps {
+                script {
+                    def services = ['victory-square-eureka-server', 'victory-square-authentication-service', 'victory-square-game-service', 'victory-square-gateway']
+                    def imageTags = [:]
+
+                    for (service in services) {
+                        def imageName = "${DOCKERHUB_REPO_PREFIX}/${service}"
+                        def imageTag = "${imageName}:latest"
+
+                        echo "Building Docker image for ${service}"
+                        sh "docker build -t ${imageTag} ./${service}"
+                        imageTags[service] = imageTag
+                    }
+
+                    env.IMAGE_TAGS = imageTags.collect { key, value -> "${key}=${value}" }.join(';')
+                }
+            }
+        }
+        
+        stage('3. Push Docker Images') {
+            steps {
+                script {
+                    def imageTags = env.IMAGE_TAGS.split(';').collectEntries {
+                        def parts = it.split('=')
+                        [parts[0], parts[1]]
+                    }
+
+                    echo "Logging into Docker Hub"
+                    sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+
+                    for (service in imageTags.keySet()) {
+                        def imageTag = imageTags[service]
+                        echo "Pushing Docker image for ${service}: ${imageTag}"
+                        sh "docker push ${imageTag}"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Great success!'
+        }
+        failure {
+            echo 'It smells of failure'
+        }
+    }
+}

@@ -1,22 +1,11 @@
-FROM maven:3.9.4-eclipse-temurin-21-alpine as build-stage
-
+FROM maven:3.9.5-eclipse-temurin-21
 WORKDIR /app
 
-COPY pom.xml .
-
-
+COPY pom.xml ./
 COPY src ./src
 
-RUN mvn clean install
-
-
-
-FROM openjdk:21-jdk
-
-WORKDIR /app
-
-COPY --from=build-stage /app/target/victory-square-gateway-0.0.1-SNAPSHOT.jar victory-square-gateway-0.0.1-SNAPSHOT.jar
-
+RUN mvn clean install -DskipTests
 EXPOSE 9001
 
-ENTRYPOINT ["java", "-jar", "./victory-square-gateway-0.0.1-SNAPSHOT.jar"]
+CMD ["mvn", "spring-boot:run"]
+
