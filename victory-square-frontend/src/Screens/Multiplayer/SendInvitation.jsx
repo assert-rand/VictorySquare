@@ -15,7 +15,7 @@ const handleSearch = (searchterm, setError, setLoading, setPlayerData, token) =>
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `http://localhost:9003/game-service/user/search?email=${searchterm}`,
+        url: `http://192.168.49.2:30007/game-service/user/search?email=${searchterm}`,
         headers: {
             'Authorization' : `Bearer ${token}`
         }
@@ -45,7 +45,7 @@ const handleChallenge = (
     let config = {
         method: 'put',
         maxBodyLength: Infinity,
-        url: `http://localhost:9003/game-service/game/create?email=${user.email}&otherEmail=${email}`,
+        url: `http://192.168.49.2:30007/game-service/game/create?email=${user.email}&otherEmail=${email}`,
         headers: {
             'Authorization' : `Bearer ${token}`
         }
@@ -68,7 +68,7 @@ const handleChallenge = (
         let anotherConfig = {
             method: 'post',
             maxBodyLength: Infinity,
-            url: `http://localhost:9003/game-service/user/invite?email=${email}`,
+            url: `http://192.168.49.2:30007/game-service/user/invite?email=${email}`,
             headers: { 
               'Content-Type': 'application/json',
               'Authorization' : `Bearer ${token}`

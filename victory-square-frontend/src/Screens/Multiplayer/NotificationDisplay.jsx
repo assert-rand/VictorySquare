@@ -10,7 +10,7 @@ const refreshNotifications = (email, token, setNotifications)=>{
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `http://localhost:9003/game-service/user/notification/get?email=${email}`,
+        url: `http://192.168.49.2:30007/game-service/user/notification/get?email=${email}`,
         headers: {
             'Authorization' : `Bearer ${token}`
         }
@@ -45,7 +45,7 @@ const acceptNotification = (
     let config = {
         method: 'put',
         maxBodyLength: Infinity,
-        url: `http://localhost:9003/game-service/game/accept?email=${email}&otherEmail=${otherEmail}&gameId=${gameId}&notifId=${notifId}`,
+        url: `http://192.168.49.2:30007/game-service/game/accept?email=${email}&otherEmail=${otherEmail}&gameId=${gameId}&notifId=${notifId}`,
         headers: {
             'Authorization' : `Bearer ${token}`
         }
@@ -85,7 +85,7 @@ const rejectNotification = (
     let config = {
         method: 'put',
         maxBodyLength: Infinity,
-        url: `http://localhost:9003/game-service/game/reject?email=${email}&otherEmail=${otherEmail}&notifId=${notifId}`,
+        url: `http://192.168.49.2:30007/game-service/game/reject?email=${email}&otherEmail=${otherEmail}&notifId=${notifId}`,
         headers: {
             'Authorization' : `Bearer ${token}`
         }

@@ -17,7 +17,7 @@ const signupRequest = (formData, setToken, setUser, navigate, setWaiting)=>{
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:9003/authentication-service/register',
+        url: 'http://192.168.49.2:30007/authentication-service/register',
         headers: { 
             'Content-Type': 'application/json'
         },

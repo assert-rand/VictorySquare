@@ -17,7 +17,7 @@ const withdraw = (email, otherEmail, token, navigate)=>{
   let config = {
     method: 'delete',
     maxBodyLength: Infinity,
-    url: `http://localhost:9003/game-service/game/withdraw?email=${email}&otherEmail=${otherEmail}`,
+    url: `http://192.168.49.2:30007/game-service/game/withdraw?email=${email}&otherEmail=${otherEmail}`,
     headers: {
       'Authorization' : `Bearer ${token}`
     }
@@ -54,7 +54,7 @@ export default function Game() {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `http://localhost:9003/game-service/game/state?id=${gameid}`,
+      url: `http://192.168.49.2:30007/game-service/game/state?id=${gameid}`,
       headers: {
         'Authorization' : `Bearer ${token}`
       }
@@ -83,7 +83,7 @@ export default function Game() {
         let config = {
           method: 'patch',
           maxBodyLength: Infinity,
-          url: `http://localhost:9003/game-service/game/move?id=${gameid}&state=${gameCopy.fen()}&email=${appState.user.email}`,
+          url: `http://192.168.49.2:30007/game-service/game/move?id=${gameid}&state=${gameCopy.fen()}&email=${appState.user.email}`,
           headers: {
             'Authorization' : `Bearer ${token}`
           }

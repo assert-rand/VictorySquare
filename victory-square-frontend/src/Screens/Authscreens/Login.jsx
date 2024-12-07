@@ -16,7 +16,7 @@ const loginRequest = (formData, setToken, setUser, navigate, setWaiting)=>{
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:9003/authentication-service/authenticate',
+        url: 'http://192.168.49.2:30007/authentication-service/authenticate',
         headers: { 
             'Content-Type': 'application/json'
         },
