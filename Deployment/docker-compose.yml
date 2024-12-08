@@ -63,9 +63,51 @@ services:
           "spring.datasource.password": "${POSTGRESDB_ROOT_PASSWORD}",
           "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.PostgreSQLDialect",
           "spring.jpa.hibernate.ddl-auto": "update",
-          "spring.application.name": "authentication-service",
+          "spring.application.name": "game-service",
           "eureka.client.serviceUrl.defaultZone": "${EUREKA_URL}"
         }
+
+  elasticsearch: 
+    container_name: victory_elastics 
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2 
+    volumes: 
+      - type: volume 
+        source: elasticsearch 
+        target: /usr/share/elasticsearch/data 
+    ports: 
+      - "9200:9200" 
+      - "9300:9300" 
+    environment: 
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m" 
+      ELASTIC_PASSWORD: changeme 
+      discovery.type: single-node 
+
+  logstash: 
+    container_name: victory_stash
+    image: docker.elastic.co/logstash/logstash:7.15.2 
+    volumes: 
+      - type: bind 
+        source: .logstash 
+        target: /usr/share/logstash/pipeline 
+        read_only: true 
+    ports: 
+      - "5044:5044" 
+      - "5000:5000/tcp" 
+      - "5000:5000/udp" 
+      - "9600:9600" 
+      - "4560:4560" 
+    environment: 
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m" 
+    depends_on: 
+      - elasticsearch
+
+  kibana: 
+    container_name: victory_kibana 
+    image: docker.elastic.co/kibana/kibana:7.15.2 
+    ports: 
+      - "5601:5601" 
+    depends_on: 
+      - elasticsearch
 
   victory-square-gateway:
     build: ../victory-square-gateway
@@ -75,6 +117,10 @@ services:
       - victory-square-eureka-server
       - victory-square-game-service
       - victory-square-authentication-service
+      - elasticsearch
+      - logstash
+      - kibana
+
     env_file: ./.env
     ports:
       - ${GATEWAY_HOSTPORT}:${GATEWAY_CONTAINERPORT}
@@ -93,5 +139,7 @@ services:
           "eureka.client.serviceUrl.defaultZone": "${EUREKA_URL}"
         }
 
+
 volumes:
   db:
+  elasticsearch:
