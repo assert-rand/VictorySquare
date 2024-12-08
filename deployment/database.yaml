@@ -17,8 +17,7 @@ spec:
         spec:
             containers:
             -   name: database
-                image: database
-                imagePullPolicy: Never
+                image: todorokishotoua15/database
                 ports:
                 -   containerPort: 3306
 

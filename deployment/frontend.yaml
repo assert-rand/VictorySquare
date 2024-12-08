@@ -17,8 +17,7 @@ spec:
         spec:
             containers:
             -   name: frontend
-                image: victorysq-frontend
-                imagePullPolicy: Never
+                image: todorokishotoua15/victorysq-frontend
                 ports:
                 -   containerPort: 80
 

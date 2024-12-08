@@ -17,18 +17,16 @@ spec:
         spec:
             containers:
             -   name: auth
-                image: auth
-                imagePullPolicy: Never
+                image: todorokishotoua15/auth
                 ports:
                 -   containerPort: 9001
             -   name: game-service
-                image: game-service
-                imagePullPolicy: Never
+                image: todorokishotoua15/game-service
                 ports:
                 -   containerPort: 9005
             -   name: gateway
-                image: gateway
-                imagePullPolicy: Never
+                image: todorokishotoua15/gateway
+
                 ports:
                 -   containerPort: 9003
 
