@@ -31,6 +31,11 @@
       state: absent
       namespace: default
       src: "{{dir}}/frontend.yaml"
+  - name: "Delete ELK if it already exists"
+    k8s:
+      state: absent
+      namespace: default
+      src: "{{dir}}/elk.yaml"
 
 
   - name: "Deploy database"
@@ -62,7 +67,7 @@
     k8s:
       state: present
       namespace: default
-      src: deployment/elk.yaml
+      src: "{{dir}}/elk.yaml"
 
 
   - name: "Deploy frontend"
