@@ -1,10 +1,10 @@
+
 ---
 - name: Deployment
   hosts: local
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
-
   - name: "Installing kubernetes package"
     ansible.builtin.pip:
       name: kubernetes
@@ -14,68 +14,64 @@
     k8s:
       state: absent
       namespace: default
-      src: ./database.yaml
-
+      src: deployment/database.yaml
   - name: "Delete the eureka server if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: ./eureka.yaml
-
+      src: deployment/eureka.yaml
   - name: "Delete the microservices if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: ./microservices.yaml
-
+      src: deployment/microservices.yaml
   - name: "Delete the frontend if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: ./frontend.yaml
+      src: deployment/frontend.yaml
+
 
   - name: "Deploy database"
     k8s:
       state: present
       namespace: default
-      src: ./database.yaml
-
+      src: deployment/database.yaml
   - name: pause for 95 seconds and let DB initialize
     pause:
       seconds: 95
-
   - name: "Deploy eureka"
     k8s:
       state: present
       namespace: default
-      src: ./eureka.yaml
-
+      src: deployment/eureka.yaml
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
-
   - name: "Deploy microservices"
     k8s:
       state: present
       namespace: default
-      src: ./microservices.yaml
+      src: deployment/microservices.yaml
+  - name: pause for 60 seconds and let DB initialize
+    pause:
+      seconds: 60
 
   - name: "ELK Integration"
     k8s:
       state: present
       namespace: default
-      src: ./elk.yaml
+      src: deployment/elk.yaml
+
 
   - name: "Deploy frontend"
     k8s:
       state: present
       namespace: default
-      src: ./frontend.yaml
-
+      src: deployment/frontend.yaml
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
-
   - name: Creating external service for frontend
     shell: minikube service frontend
   
