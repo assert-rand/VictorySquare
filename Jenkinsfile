@@ -70,7 +70,7 @@ pipeline {
                 credentialsId: 'localhost',
                 disableHostKeyChecking: true,
                 installation: 'Ansible',
-                inventory: './inventory',
+                inventory: './inventory.ini',
                 playbook: './deploy.yml',
                 sudoUser: null
             }
