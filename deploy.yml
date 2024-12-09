@@ -1,7 +1,7 @@
 
 ---
 - name: Deployment
-  hosts: local
+  hosts: localhost
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
@@ -30,7 +30,6 @@
       state: absent
       namespace: default
       src: deployment/frontend.yaml
-
 
   - name: "Deploy database"
     k8s:
@@ -63,12 +62,12 @@
       namespace: default
       src: deployment/elk.yaml
 
-
   - name: "Deploy frontend"
     k8s:
       state: present
       namespace: default
       src: deployment/frontend.yaml
+      
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60

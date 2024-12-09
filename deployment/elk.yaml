@@ -45,16 +45,23 @@ metadata:
   labels:
     app: elk
 spec:
-  ports:
-    - protocol: TCP
-      port: 9200
-      targetPort: 9200
-    - protocol: TCP
-      port: 9300
-      targetPort: 9300
   selector:
     app: elasticsearch
+  type : LoadBalancer
+  ports:
+    - name: n1
+      protocol: TCP
+      port: 9200
+      targetPort: 9200
+      nodePort : 30200
 
+    - name: n2
+      protocol: TCP
+      port: 9300
+      targetPort: 9300
+
+  
+---
 # Logstash ConfigMap
 apiVersion: v1
 kind: ConfigMap
@@ -72,7 +79,7 @@ data:
     }
     output {
         elasticsearch {
-            hosts => ["http://elasticsearch:9200"]
+            hosts => ["http://192.168.49.2:30200"]
             index => "victory-gateway-%{+YYYY.MM.dd}"
         }
         stdout {
@@ -128,20 +135,25 @@ metadata:
     app: elk
 spec:
   ports:
-    - protocol: TCP
+    - name: tcp-4560
+      protocol: TCP
       port: 4560
       targetPort: 4560
-    - protocol: TCP
+    - name: tcp-5044
+      protocol: TCP
       port: 5044
       targetPort: 5044
-    - protocol: TCP
+    - name: tcp-5000
+      protocol: TCP
       port: 5000
       targetPort: 5000
-    - protocol: TCP
+    - name: tcp-9600
+      protocol: TCP
       port: 9600
       targetPort: 9600
   selector:
     app: logstash
+
 
 
 ---
