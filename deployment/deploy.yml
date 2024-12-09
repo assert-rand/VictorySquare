@@ -1,9 +1,10 @@
 
 ---
 - name: Deployment
-  hosts: localhost
+  hosts: local
   vars:
     ansible_python_interpreter: /usr/bin/python3
+    dir: ./Desktop/spe2/VictorySquare/deployment
   tasks:
   - name: "Installing kubernetes package"
     ansible.builtin.pip:
@@ -14,28 +15,29 @@
     k8s:
       state: absent
       namespace: default
-      src: deployment/database.yaml
+      src: "{{dir}}/database.yaml"
   - name: "Delete the eureka server if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: deployment/eureka.yaml
+      src: "{{dir}}/eureka.yaml"
   - name: "Delete the microservices if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: deployment/microservices.yaml
+      src: "{{dir}}/microservices.yaml"
   - name: "Delete the frontend if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: deployment/frontend.yaml
+      src: "{{dir}}/frontend.yaml"
+
 
   - name: "Deploy database"
     k8s:
       state: present
       namespace: default
-      src: deployment/database.yaml
+      src: "{{dir}}/database.yaml"
   - name: pause for 95 seconds and let DB initialize
     pause:
       seconds: 95
@@ -43,7 +45,7 @@
     k8s:
       state: present
       namespace: default
-      src: deployment/eureka.yaml
+      src: "{{dir}}/eureka.yaml"
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
@@ -51,7 +53,7 @@
     k8s:
       state: present
       namespace: default
-      src: deployment/microservices.yaml
+      src: "{{dir}}/microservices.yaml"
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
@@ -62,15 +64,19 @@
       namespace: default
       src: deployment/elk.yaml
 
+
   - name: "Deploy frontend"
     k8s:
       state: present
       namespace: default
-      src: deployment/frontend.yaml
-      
+      src: "{{dir}}/frontend.yaml"
+
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
+
   - name: Creating external service for frontend
     shell: minikube service frontend
   
+  - name: Expose kibana
+    shell : minikube service kibana
