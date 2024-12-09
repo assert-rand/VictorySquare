@@ -13,29 +13,29 @@
     k8s:
       state: absent
       namespace: default
-      src: ./database.yaml
+      src: deployment/database.yaml
   - name: "Delete the eureka server if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: ./eureka.yaml
+      src: deployment/eureka.yaml
   - name: "Delete the microservices if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: ./microservices.yaml
+      src: deployment/microservices.yaml
   - name: "Delete the frontend if it already exists"
     k8s:
       state: absent
       namespace: default
-      src: ./frontend.yaml
+      src: deployment/frontend.yaml
 
 
   - name: "Deploy database"
     k8s:
       state: present
       namespace: default
-      src: ./database.yaml
+      src: deployment/database.yaml
   - name: pause for 95 seconds and let DB initialize
     pause:
       seconds: 95
@@ -43,7 +43,7 @@
     k8s:
       state: present
       namespace: default
-      src: ./eureka.yaml
+      src: deployment/eureka.yaml
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
@@ -51,7 +51,7 @@
     k8s:
       state: present
       namespace: default
-      src: ./microservices.yaml
+      src: deployment/microservices.yaml
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
@@ -59,7 +59,7 @@
     k8s:
       state: present
       namespace: default
-      src: ./frontend.yaml
+      src: deployment/frontend.yaml
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
