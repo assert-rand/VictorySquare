@@ -58,11 +58,11 @@
     pause:
       seconds: 60
 
-  - name: "ELK Integration"
-    k8s:
-      state: present
-      namespace: default
-      src: deployment/elk.yaml
+  # - name: "ELK Integration"
+  #   k8s:
+  #     state: present
+  #     namespace: default
+  #     src: deployment/elk.yaml
 
 
   - name: "Deploy frontend"
