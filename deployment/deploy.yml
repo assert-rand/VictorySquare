@@ -76,12 +76,3 @@
       namespace: default
       src: "{{dir}}/frontend.yaml"
 
-  - name: pause for 60 seconds and let DB initialize
-    pause:
-      seconds: 60
-
-  - name: Creating external service for frontend
-    shell: minikube service frontend
-  
-  - name: Expose kibana
-    shell : minikube service kibana
