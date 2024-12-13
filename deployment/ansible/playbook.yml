@@ -1,5 +1,7 @@
 ---
 - name: Deployment 
   hosts: local
+  vars_files:
+    - ./roles/common/vault/main.yml
   roles:
     - role: './roles/common'
