@@ -70,9 +70,10 @@ pipeline {
                 credentialsId: 'localhost',
                 disableHostKeyChecking: true,
                 installation: 'Ansible',
-                inventory: './deployment/inventory.ini',
-                playbook: './deployment/deploy.yml',
+                inventory: './deployment/ansible/inventory.ini',
+                playbook: './deployment/ansible/playbook.yml',
                 sudoUser: null
+                vaultCredentialsId("Ansible")
             }
         }
     }

@@ -10,28 +10,6 @@
     ansible.builtin.pip:
       name: kubernetes
       extra_args: --break-system-packages
-        
-  - name: "Delete the database if it already exists"
-    k8s:
-      state: absent
-      namespace: default
-      src: "{{dir}}/database.yaml"
-  - name: "Delete the eureka server if it already exists"
-    k8s:
-      state: absent
-      namespace: default
-      src: "{{dir}}/eureka.yaml"
-  - name: "Delete the microservices if it already exists"
-    k8s:
-      state: absent
-      namespace: default
-      src: "{{dir}}/microservices.yaml"
-  - name: "Delete the frontend if it already exists"
-    k8s:
-      state: absent
-      namespace: default
-      src: "{{dir}}/frontend.yaml"
-
 
   - name: "Deploy database"
     k8s:
@@ -71,12 +49,3 @@
       namespace: default
       src: "{{dir}}/frontend.yaml"
 
-  - name: pause for 60 seconds and let DB initialize
-    pause:
-      seconds: 60
-
-  - name: Creating external service for frontend
-    shell: minikube service frontend
-  
-  - name: Expose kibana
-    shell : minikube service kibana
