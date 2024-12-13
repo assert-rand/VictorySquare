@@ -65,15 +65,16 @@ pipeline {
         // }
         stage('Step 4: Ansible Deployment') {
             steps{
-                ansiblePlaybook becomeUser: null,
-                colorized: true,
-                credentialsId: 'localhost',
-                disableHostKeyChecking: true,
-                installation: 'Ansible',
-                inventory: './deployment/ansible/inventory.ini',
-                playbook: './deployment/ansible/playbook.yml',
-                sudoUser: null
-                vaultCredentialsId("Ansible")
+                sh 'ansible-playbook -i ./deployment/ansible/inventory.ini ./deployment/ansible/playbook.yml --vault-password-file ~/Desktop/password.txt'
+                // ansiblePlaybook becomeUser: null,
+                // colorized: true,
+                // credentialsId: 'localhost',
+                // disableHostKeyChecking: true,
+                // installation: 'Ansible',
+                // inventory: './deployment/ansible/inventory.ini',
+                // playbook: './deployment/ansible/playbook.yml',
+                // sudoUser: null
+                // vaultCredentialsId("Ansible")
             }
         }
     }
