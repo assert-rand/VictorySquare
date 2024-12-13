@@ -4,7 +4,7 @@
   hosts: local
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    dir: ./Desktop/spe2/VictorySquare/deployment
+    dir: ~/Desktop/VictorySquare/deployment
   tasks:
   - name: "Installing kubernetes package"
     ansible.builtin.pip:
@@ -62,7 +62,7 @@
     k8s:
       state: present
       namespace: default
-      src: deployment/elk.yaml
+      src: "{{dir}}/elk.yaml"
 
 
   - name: "Deploy frontend"

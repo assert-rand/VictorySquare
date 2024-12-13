@@ -10,7 +10,7 @@ const Hero = () => {
             <Container className="text-center">
                 <h1 style={{ fontSize: '2rem', fontWeight: 'bold' }}>VictorySquare</h1>
                 <p style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
-                    Master the board — challenge players worldwide or take on a powerful engine.
+                    Master the board — challenge players worldwide.
                 </p>
                 <Row className="mt-4">
                     <Col className="d-flex justify-content-center">
@@ -19,9 +19,9 @@ const Hero = () => {
                         }}>
                             Play against Humans
                         </Button>
-                        <Button variant="light" size="lg" className="mx-3" disabled={true}>
+                        {/* <Button variant="light" size="lg" className="mx-3" disabled={true}>
                             Play against Engine
-                        </Button>
+                        </Button> */}
                     </Col>
                 </Row>
             </Container>

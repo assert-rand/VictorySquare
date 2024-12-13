@@ -1,4 +1,0 @@
-ValidMovesTest.rook_test 1 0.00435697
-ValidMovesTest.bishop_test 1 0.00345611
-ValidMovesTest.pawn_test 1 0.00278604
----

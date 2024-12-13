@@ -1,7 +1,0 @@
-add_test([=[ValidMovesTest.rook_test]=]  [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests]==] [==[--gtest_filter=ValidMovesTest.rook_test]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[ValidMovesTest.rook_test]=]  PROPERTIES WORKING_DIRECTORY [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test([=[ValidMovesTest.bishop_test]=]  [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests]==] [==[--gtest_filter=ValidMovesTest.bishop_test]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[ValidMovesTest.bishop_test]=]  PROPERTIES WORKING_DIRECTORY [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test([=[ValidMovesTest.pawn_test]=]  [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests/Tests]==] [==[--gtest_filter=ValidMovesTest.pawn_test]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[ValidMovesTest.pawn_test]=]  PROPERTIES WORKING_DIRECTORY [==[/home/harsh-kumar/Desktop/spe_final_project/VictorySquare/Chess Engine/build/tests]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  Tests_TESTS ValidMovesTest.rook_test ValidMovesTest.bishop_test ValidMovesTest.pawn_test)
