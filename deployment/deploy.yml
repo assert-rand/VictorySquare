@@ -4,7 +4,7 @@
   hosts: local
   vars:
     ansible_python_interpreter: /usr/bin/python3
-    dir: ./Desktop/spe2/VictorySquare/deployment
+    dir: ~/Desktop/VictorySquare/deployment
   tasks:
   - name: "Installing kubernetes package"
     ansible.builtin.pip:
@@ -35,6 +35,13 @@
   - name: pause for 60 seconds and let DB initialize
     pause:
       seconds: 60
+
+  - name: "ELK Integration"
+    k8s:
+      state: present
+      namespace: default
+      src: "{{dir}}/elk.yaml"
+
 
   - name: "Deploy frontend"
     k8s:
