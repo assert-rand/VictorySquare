@@ -73,6 +73,7 @@ pipeline {
                 inventory: './deployment/ansible/inventory.ini',
                 playbook: './deployment/ansible/playbook.yml',
                 sudoUser: null
+                vaultCredentialsId("Ansible")
             }
         }
     }
