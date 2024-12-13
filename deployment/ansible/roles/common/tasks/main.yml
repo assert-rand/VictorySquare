@@ -1,0 +1,36 @@
+---
+- name: "Installing kubernetes package"
+  ansible.builtin.pip:
+    name: kubernetes
+    extra_args: --break-system-packages
+
+- name: "Deploy database"
+  k8s:
+    state: present
+    namespace: default
+    src: "{{dir}}/database.yaml"
+- name: pause for 95 seconds and let DB initialize
+  pause:
+    seconds: 95
+- name: "Deploy eureka"
+  k8s:
+    state: present
+    namespace: default
+    src: "{{dir}}/eureka.yaml"
+- name: pause for 60 seconds and let DB initialize
+  pause:
+    seconds: 60
+- name: "Deploy microservices"
+  k8s:
+    state: present
+    namespace: default
+    src: "{{dir}}/microservices.yaml"
+- name: pause for 60 seconds and let DB initialize
+  pause:
+    seconds: 60
+
+- name: "Deploy frontend"
+  k8s:
+    state: present
+    namespace: default
+    src: "{{dir}}/frontend.yaml"

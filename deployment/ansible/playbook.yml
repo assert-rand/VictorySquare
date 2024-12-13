@@ -1,0 +1,5 @@
+---
+- name: Deployment 
+  hosts: local
+  roles:
+    - role: './roles/common'
